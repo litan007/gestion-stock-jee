@@ -1,0 +1,33 @@
+CREATE TABLE IF NOT EXISTS roles (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(30) NOT NULL UNIQUE,
+  description VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS utilisateurs (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(50) NOT NULL UNIQUE,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  mot_de_passe VARCHAR(120) NOT NULL,
+  nom_complet VARCHAR(120) NOT NULL,
+  role_id BIGINT NOT NULL,
+  actif BOOLEAN NOT NULL DEFAULT TRUE,
+  date_creation TIMESTAMP NOT NULL,
+  date_modification TIMESTAMP NOT NULL,
+  CONSTRAINT fk_utilisateur_role FOREIGN KEY (role_id) REFERENCES roles(id)
+);
+
+CREATE TABLE IF NOT EXISTS produits (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(150) NOT NULL,
+  reference VARCHAR(40) NOT NULL UNIQUE,
+  description VARCHAR(800),
+  categorie VARCHAR(80) NOT NULL,
+  prix DECIMAL(12,2) NOT NULL,
+  quantite INT NOT NULL,
+  quantite_minimale INT NOT NULL,
+  fournisseur VARCHAR(100) NOT NULL,
+  actif BOOLEAN NOT NULL DEFAULT TRUE,
+  date_creation TIMESTAMP NOT NULL,
+  date_modification TIMESTAMP NOT NULL
+);
