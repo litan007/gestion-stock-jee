@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Détail produit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<div class="container mt-4">
+    <h3>Détail du produit</h3>
+    <div class="card">
+        <div class="card-body">
+            <h4 th:text="${produit.nom}"></h4>
+            <p><strong>Référence:</strong> <span th:text="${produit.reference}"></span></p>
+            <p><strong>Catégorie:</strong> <span th:text="${produit.categorie}"></span></p>
+            <p><strong>Prix:</strong> <span th:text="${#numbers.formatDecimal(produit.prix,1,2)} + ' €'"></span></p>
+            <p><strong>Quantité:</strong> <span th:text="${produit.quantite}"></span></p>
+            <p><strong>État:</strong> <span th:text="${produit.etatStock}"></span></p>
+            <p><strong>Fournisseur:</strong> <span th:text="${produit.fournisseur}"></span></p>
+            <p><strong>Description:</strong> <span th:text="${produit.description}"></span></p>
+        </div>
+    </div>
+    <a class="btn btn-secondary mt-3" th:href="@{/produits}">Retour</a>
+</div>
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
